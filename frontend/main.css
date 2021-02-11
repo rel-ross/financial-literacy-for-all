@@ -6,12 +6,26 @@ body {
 
 button {
     cursor: pointer;
+    background-color: white;
+    font-family: 'Poppins', sans-serif;
+    font-size: 24px;
+    padding:20px;
+    border-radius: 10px;
+    border: none;
+    box-shadow: 10px 10px;
+}
+
+button:hover {
+    transition: ease 0.7s;
+    background-color: black;
+    color: white;
+    box-shadow: none;  
 }
 
 .company-sidebar {
     height: 100%;
     /* //change this back to 100% later */
-    width: 200px;
+    width: 100%;
     position: fixed;
     z-index: 1;
     top: 0;
@@ -86,3 +100,18 @@ button {
     border-color: rgb(216, 214, 214);
     color: rgb(216, 214, 214);
 }
+#loader {
+    visibility: hidden;
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
