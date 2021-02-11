@@ -26,7 +26,10 @@
                 <h2>You got paid! </h2>
                 <h2>Upload this week’s paystub and we can take a look at it together </h2>
             </div>
-            <div id="uploader-drop-box">This is a placeholder</div>
+            <input type="file"
+                id="uploader-drop-box" name="uploaded-file"
+                accept=".pdf">
+            <div id="loader"></div>
         </div>
     </div>
     <script src="app.js"></script>

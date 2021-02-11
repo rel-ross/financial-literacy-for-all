@@ -3,9 +3,12 @@ const $enterButton = document.querySelector(".enter-button")
 const $companySideBar = document.querySelector(".company-sidebar")
 const $search = document.querySelector("#search")
 const $navBar = document.querySelector("#navbar")
+const $uploaderBox = document.querySelector('#uploader-drop-box')
+const $loader = document.querySelector('#loader')
 
 $enterButton.addEventListener("click", removeSplash)
 $search.addEventListener("click", searchBarAppear)
+$uploaderBox.addEventListener("drop", uploadFile)
 
 function removeSplash(event) {
     console.log($companySideBar)
@@ -28,4 +31,10 @@ function searchBarAppear(event) {
         />
     `
     $navBar.append($searchBarForm)
+}
+
+function uploadFile(event) {
+    console.log(document.getElementById('uploader-drop-box').files[0])
+    $uploaderBox.style.visibility="hidden"
+    $loader.style.visibility ="visible"
 }
