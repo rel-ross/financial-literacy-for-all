@@ -80,7 +80,11 @@ document.getElementById("send").addEventListener("click", function() {
       upload.on(
         "state_changed",
         function progress(snapshot) {
-            $progress.style.visibility ="visible"
+          var percentage =
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+           const $progressBar = document.getElementById("progress")
+           $progressBar.style.visibility = "visible"
+           $progressBar.value = percentage;
         },
 
         function error() {
@@ -88,11 +92,9 @@ document.getElementById("send").addEventListener("click", function() {
         },
 
         function complete() {
-            $progress.style.visibility ="hidden"
           document.getElementById(
             "uploading"
           ).innerHTML += `${files[i].name} uploaded <br />`;
-
         }
       );
     }
