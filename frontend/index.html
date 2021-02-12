@@ -26,12 +26,23 @@
                 <h2>You got paid! </h2>
                 <h2>Upload this week’s paystub and we can take a look at it together </h2>
             </div>
-            <input type="file"
-                id="uploader-drop-box" name="uploaded-file"
-                accept=".pdf">
-            <div id="loader"></div>
+            <div id="uploader-drop-box">
+                <input type="file" id="files" name="uploaded-file" accept=".pdf">
+                <button id="send">Upload</button>
+                <progress value="0" max="100" id="progress"></progress>
+                <p id="uploading"></p>
+            </div>
         </div>
     </div>
-    <script src="app.js"></script>
+  <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+  <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+<!-- The core Firebase JS SDK is always required and must be listed first -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-app.js"></script>
+
+<!-- TODO: Add SDKs for Firebase products that you want to use -->
+<script src="https://www.gstatic.com/firebasejs/7.13.1/firebase-storage.js"></script>
+  <script src="app.js"></script>
+
 </body>
 </html>
