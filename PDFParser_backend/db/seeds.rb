@@ -9,8 +9,6 @@ require 'pry'
 require 'pdf-reader'
 Page.destroy_all
 
-# private_key_json_string = File.open('~/paystub-literacy-firebase-adminsdk-cxfj8-d6fd6ca25e.json').read
-# firebase = Firebase::Client.new(base_uri, private_key_json_string)
 
 io     = open("https://firebasestorage.googleapis.com/v0/b/paystub-literacy.appspot.com/o/node-sample-simplified.pdf?alt=media&token=a1eab332-819f-4ef1-88ef-675d1498c480")
 reader = PDF::Reader.new(io)
