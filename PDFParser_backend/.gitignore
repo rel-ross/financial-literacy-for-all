@@ -30,4 +30,4 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
-/PDFParser_backend/paystub-literacy-firebase-adminsdk-cxfj8-d6fd6ca25e.json
+/paystub-literacy-firebase-adminsdk-cxfj8-d6fd6ca25e.json
