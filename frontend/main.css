@@ -116,6 +116,10 @@ button#send {
     visibility: hidden;
 }
 
+table{
+    border: 1px solid black;
+  }
+
 button#see-file {
     visibility: hidden;
 }

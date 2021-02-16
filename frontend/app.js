@@ -108,10 +108,10 @@ document.getElementById("send").addEventListener("click", function() {
           var filesRef = storageRef.child('files');
           var uploadedFile = filesRef.child(files[i].name)
           console.log(`made it to 103- ${uploadedFile}`)
-        //   getFileUrl(uploadedFile)
-    //       uploadedFile.getDownloadURL()
+          getFileUrl(uploadedFile)
+        //   uploadedFile.getDownloadURL()
     //         .then(fireBaseUrl => {
-    //             console.log(fireBaseUrl)
+    //             console.log(`this is the URL ${fireBaseUrl}`)
     // //     do a fetch, post to the Rails backend and give the url by way of fireBaseURL)
     //             fetch('http://localhost:3000/pages',  {
     //                 method: "POST",
@@ -135,43 +135,62 @@ document.getElementById("send").addEventListener("click", function() {
     });
 
 
-function getFileUrl(filename) {
+function getFileUrl(file) {
   //create a storage reference
-  console.log(filename)
-  var storageRef = firebase.storage().ref(filename);
+  var storageRef = firebase.storage().ref(file.name);
 
   //get file url
   storageRef
     .getDownloadURL()
     .then(function(url) {
-      console.log(url);
+      storeFiletoBackend(url)
     })
     .catch(function(error) {
       console.log("error encountered");
     });
 }
+
+function storeFiletoBackend(URL) {
+    console.log("this is the URL", URL)
+    fetch('http://localhost:3000/pages',  {
+        method: "POST",
+        //this is where we tell the backend what we're sending over
+        headers: {
+            "Content-type": "application/json"
+        },
+        body: JSON.stringify({
+            page: { url: URL }
+        })
+    })
+}
+
 function showParsedPDF(event) {
     let fileContent = "";
+    $documentDisplay.style.visibility="visible"
     fetch("http://localhost:3000/pages/1")
         .then(response => response.json())
         .then(file => {
             fileContent = file.content
-            console.log(fileContent)
             let splitFile = fileContent.split(/\r?\n/)
-            let nullCount = 0
             splitFile.splice("", 'Test')
             let filteredFileArray = splitFile.filter(word => word != false)
-            console.log(filteredFileArray)
-            filteredFileArray.forEach(element => {
-                const $fileElement = document.createElement("div")
-                $fileElement.textContent = element
-                $uploaderContent.append($fileElement)
+            filteredFileArray.map(arrayItem => {
+                $row = document.createElement("tr")
+                rowArray = arrayItem.split("                    ")
+                let noBlanksRowArray = rowArray.filter(element => element.length > 0)
+                noBlanksRowArray.map(element => {
+                    console.log("element and length", element, element.length)
+                        $cell = document.createElement("td")
+                        $cell.textContent = element.trim()
+                        return $cell
+
+                }).map($cell => {
+                    $row.append($cell)
+                    return $row
+                }).forEach ($row => {
+                    $documentDisplay.append($row)
+                })
             })
-        //     $uploaderContent.innerHTML = `
-        //     ${$documentDisplay.InnerHTML = `
-        //         <p> File ${filteredFileArray}</p>
-        //         `}
-        // `
         })
 
 }
