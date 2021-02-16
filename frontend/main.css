@@ -111,3 +111,11 @@ button:hover {
 button#send {
     margin-top:40px;
 }
+
+#document-display {
+    visibility: hidden;
+}
+
+button#see-file {
+    visibility: hidden;
+}

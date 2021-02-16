@@ -3,11 +3,15 @@ const $enterButton = document.querySelector(".enter-button")
 const $companySideBar = document.querySelector(".company-sidebar")
 const $search = document.querySelector("#search")
 const $navBar = document.querySelector("#navbar")
-// const $uploaderBox = document.querySelector('#uploader-drop-box')
+const $uploaderBox = document.querySelector('#uploader-drop-box')
 const $progress = document.querySelector('#progress')
+const $uploaderContent = document.querySelector('#uploader-content')
+const $documentDisplay = document.querySelector('#document-display')
+const $seeFileButton = document.querySelector('#see-file')
 
 $enterButton.addEventListener("click", removeSplash)
 $search.addEventListener("click", searchBarAppear)
+
 // $uploaderBox.addEventListener("drop", uploadFile)
 
 function removeSplash(event) {
@@ -95,7 +99,12 @@ document.getElementById("send").addEventListener("click", function() {
         function complete() {
           document.getElementById(
             "uploading"
-          ).innerHTML += `${files[i].name} uploaded <br />`;
+          ).innerHTML += `
+            ${files[i].name} uploaded <br />
+            `;
+            $seeFileButton.style.visibility = "visible"
+            $seeFileButton.textContent ="See File"
+
           var filesRef = storageRef.child('files');
           var uploadedFile = filesRef.child(files[i].name)
           console.log(`made it to 103- ${uploadedFile}`)
@@ -122,7 +131,7 @@ document.getElementById("send").addEventListener("click", function() {
     } else {
     alert("No file chosen");
     }
-    showParsedPDF()
+    $seeFileButton.addEventListener('click', showParsedPDF)
     });
 
 
@@ -141,10 +150,17 @@ function getFileUrl(filename) {
       console.log("error encountered");
     });
 }
-function showParsedPDF() {
+function showParsedPDF(event) {
+    let fileContent = "";
     fetch("http://localhost:3000/pages/1")
         .then(response => response.json())
         .then(file => {
-            console.log(file.content)
+            fileContent = file.content
+            $uploaderContent.innerHTML = `
+            ${$documentDisplay.InnerHTML = `
+                <p> File ${fileContent}</p>
+                `}
+        `
         })
+
 }
