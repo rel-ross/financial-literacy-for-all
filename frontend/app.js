@@ -54,7 +54,8 @@ function uploadFile(event) {
   };
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
-
+var storage = firebase.storage()
+var storageRef = storage.ref();
 
 
 var files = [];
@@ -66,10 +67,12 @@ document.getElementById("files").addEventListener("change", function(e) {
 });
 
 document.getElementById("send").addEventListener("click", function() {
-  //checks if files are selected
-  if (files.length != 0) {
+    //checks if files are selected
+    if (files.length != 0) {
+
     //Loops through all the selected files
     for (let i = 0; i < files.length; i++) {
+
       //create a storage reference
       var storage = firebase.storage().ref(files[i].name);
 
@@ -82,9 +85,7 @@ document.getElementById("send").addEventListener("click", function() {
         function progress(snapshot) {
           var percentage =
             (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-           const $progressBar = document.getElementById("progress")
-           $progressBar.style.visibility = "visible"
-           $progressBar.value = percentage;
+          document.getElementById("progress").value = percentage;
         },
 
         function error() {
@@ -95,20 +96,43 @@ document.getElementById("send").addEventListener("click", function() {
           document.getElementById(
             "uploading"
           ).innerHTML += `${files[i].name} uploaded <br />`;
+          var filesRef = storageRef.child('files');
+          var uploadedFile = filesRef.child(files[i].name)
+          console.log(`made it to 103- ${uploadedFile}`)
+        //   getFileUrl(uploadedFile)
+    //       uploadedFile.getDownloadURL()
+    //         .then(fireBaseUrl => {
+    //             console.log(fireBaseUrl)
+    // //     do a fetch, post to the Rails backend and give the url by way of fireBaseURL)
+    //             fetch('http://localhost:3000/pages',  {
+    //                 method: "POST",
+    //                 //this is where we tell the backend what we're sending over
+    //                 headers: {
+    //                     "Content-type": "application/json"
+    //                 },
+    //                 body: JSON.stringify({
+    //                     page: { url: fireBaseURL }
+    //                 })
+                
+    //             })
+    //         })
         }
       );
     }
-  } else {
+    } else {
     alert("No file chosen");
-  }
-});
+    }
+    showParsedPDF()
+    });
+
 
 function getFileUrl(filename) {
   //create a storage reference
-  var storage = firebase.storage().ref(filename);
+  console.log(filename)
+  var storageRef = firebase.storage().ref(filename);
 
   //get file url
-  storage
+  storageRef
     .getDownloadURL()
     .then(function(url) {
       console.log(url);
@@ -116,4 +140,11 @@ function getFileUrl(filename) {
     .catch(function(error) {
       console.log("error encountered");
     });
+}
+function showParsedPDF() {
+    fetch("http://localhost:3000/pages/1")
+        .then(response => response.json())
+        .then(file => {
+            console.log(file.content)
+        })
 }
