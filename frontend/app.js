@@ -109,22 +109,6 @@ document.getElementById("send").addEventListener("click", function() {
           var uploadedFile = filesRef.child(files[i].name)
           console.log(`made it to 103- ${uploadedFile}`)
           getFileUrl(uploadedFile)
-        //   uploadedFile.getDownloadURL()
-    //         .then(fireBaseUrl => {
-    //             console.log(`this is the URL ${fireBaseUrl}`)
-    // //     do a fetch, post to the Rails backend and give the url by way of fireBaseURL)
-    //             fetch('http://localhost:3000/pages',  {
-    //                 method: "POST",
-    //                 //this is where we tell the backend what we're sending over
-    //                 headers: {
-    //                     "Content-type": "application/json"
-    //                 },
-    //                 body: JSON.stringify({
-    //                     page: { url: fireBaseURL }
-    //                 })
-                
-    //             })
-    //         })
         }
       );
     }
