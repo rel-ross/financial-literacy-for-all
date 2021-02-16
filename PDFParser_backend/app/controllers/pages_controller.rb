@@ -16,6 +16,17 @@ class PagesController < ApplicationController
   # POST /pages
   def create
     @page = Page.new(page_params)
+    io     = open(@page.url)
+    binding.pry
+    reader = PDF::Reader.new(io)
+
+    reader.pages.each do |page|
+    # puts page.fonts
+      # pageText = page.text
+      # puts pageText
+      @page.content = page.text
+    # puts page.raw_content
+  end
 
     if @page.save
       render json: @page, status: :created, location: @page
