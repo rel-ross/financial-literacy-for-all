@@ -156,11 +156,22 @@ function showParsedPDF(event) {
         .then(response => response.json())
         .then(file => {
             fileContent = file.content
-            $uploaderContent.innerHTML = `
-            ${$documentDisplay.InnerHTML = `
-                <p> File ${fileContent}</p>
-                `}
-        `
+            console.log(fileContent)
+            let splitFile = fileContent.split(/\r?\n/)
+            let nullCount = 0
+            splitFile.splice("", 'Test')
+            let filteredFileArray = splitFile.filter(word => word != false)
+            console.log(filteredFileArray)
+            filteredFileArray.forEach(element => {
+                const $fileElement = document.createElement("div")
+                $fileElement.textContent = element
+                $uploaderContent.append($fileElement)
+            })
+        //     $uploaderContent.innerHTML = `
+        //     ${$documentDisplay.InnerHTML = `
+        //         <p> File ${filteredFileArray}</p>
+        //         `}
+        // `
         })
 
 }
