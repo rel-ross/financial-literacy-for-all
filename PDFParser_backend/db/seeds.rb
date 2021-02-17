@@ -7,11 +7,13 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'pry'
 require 'pdf-reader'
+require 'open-uri'
 Page.destroy_all
 
 
-io     = open("https://firebasestorage.googleapis.com/v0/b/paystub-literacy.appspot.com/o/node-sample-simplified.pdf?alt=media&token=a1eab332-819f-4ef1-88ef-675d1498c480")
+io = open("https://firebasestorage.googleapis.com/v0/b/mod-3-project-a1e21.appspot.com/o/node-sample-simplified.pdf?alt=media&token=60805945-6bbb-45b9-a7ca-42b4bb28c16a/")
 reader = PDF::Reader.new(io)
+# reader = PDF::Reader.new("./node-sample-simplified.pdf")
 
 reader.pages.each do |page|
     # puts page.fonts

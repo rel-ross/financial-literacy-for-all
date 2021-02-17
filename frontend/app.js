@@ -52,15 +52,16 @@ function uploadFile(event) {
   // Your web app's Firebase configuration
   // For Firebase JS SDK v7.20.0 and later, measurementId is optional
   var firebaseConfig = {
-    apiKey: "AIzaSyCVpdp_zJD6hFhb1WkTgOrE4IsShhDRAyQ",
-    authDomain: "paystub-literacy.firebaseapp.com",
-    projectId: "paystub-literacy",
-    databaseURL: "https://paystub-literacy-default-rtdb.firebaseio.com/",
-    storageBucket: "paystub-literacy.appspot.com",
-    messagingSenderId: "1001559770152",
-    appId: "1:1001559770152:web:45e63caad1566ae98fa11d",
-    measurementId: "G-PPETCFSEGX"
+    apiKey: "AIzaSyCTPLdDb1d8Tpm6I0twvlypTVeRrylbPeY",
+    authDomain: "mod-3-project-a1e21.firebaseapp.com",
+    projectId: "mod-3-project-a1e21",
+    storageBucket: "mod-3-project-a1e21.appspot.com",
+    dataBaseURL: "https://mod-3-project-a1e21.firebaseio.com",
+    messagingSenderId: "410320690637",
+    appId: "1:410320690637:web:cd1c235325f7ee7b837884",
+    measurementId: "G-3YGTJNKGYR"
   };
+
   // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 var storage = firebase.storage()
@@ -138,7 +139,7 @@ function getFileUrl(file) {
       console.log("error encountered");
     });
 }
-
+let uploadedFileID = 0;
 function storeFiletoBackend(URL) {
     console.log("this is the URL", URL)
     fetch('http://localhost:3000/pages',  {
@@ -150,7 +151,11 @@ function storeFiletoBackend(URL) {
         body: JSON.stringify({
             page: { url: URL }
         })
-    })
+    }).then(response => response.json())
+        .then(file => {
+          uploadedFileID = file.id
+          console.log("uploaded file id", uploadedFileID)
+        })
 }
 
 function showParsedPDF(event) {
@@ -158,7 +163,7 @@ function showParsedPDF(event) {
     $uploaderBox.remove()
     $uploaderHeader.textContent = "Hover over pay items to learn about them"
     $documentDisplay.style.opacity="1"
-    fetch("http://localhost:3000/pages/1")
+    fetch(`http://localhost:3000/pages/${uploadedFileID}`)
         .then(response => response.json())
         .then(file => {
             fileContent = file.content
@@ -206,6 +211,24 @@ function stubItemInfo(event) {
             Why is this good? When your tax percentages are calcualted, they will now be calculated on a lower number
             since the pre-tax deductions lowered the wages (this new, lowered, wage amount is called your subject wage)
         `
+    } else if (title.includes("post")) {
+        $modal.innerHTML = `
+        These deductions are taken out of your pay after taxes have been deducted. They have no tax implications.
+        `
+
+    } else if (title.includes("net")) {
+        $modal.innerHTML = `
+        This is your take home money after all deductions have been removed.
+        `
+
+    } else if (title.includes("check")) {
+        $modal.innerHTML = `
+        What is the difference between check amount and net pay? If you earn cash tips, 
+        you may have already taken that money home at the end of the workday. That is 
+        part of yur net pay, but you will not be receiving it in this week's check, as it
+        has already been paid out.
+        `
+
     } else {
         $modal.style.display = "none"
     }

@@ -98,7 +98,6 @@ GEM
       racc (~> 1.4)
     nokogiri (1.11.1-x86_64-darwin)
       racc (~> 1.4)
-    open-uri (0.1.0)
     pdf-reader (2.4.2)
       Ascii85 (~> 1.0)
       afm (~> 0.2.1)
@@ -173,7 +172,6 @@ DEPENDENCIES
   bootsnap (>= 1.4.4)
   byebug
   listen (~> 3.3)
-  open-uri
   pdf-reader
   pry
   puma (~> 5.0)
