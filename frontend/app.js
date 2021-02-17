@@ -150,7 +150,8 @@ function storeFiletoBackend(URL) {
 
 function showParsedPDF(event) {
     let fileContent = "";
-    $documentDisplay.style.visibility="visible"
+    $uploaderBox.remove()
+    $documentDisplay.style.opacity="1"
     fetch("http://localhost:3000/pages/1")
         .then(response => response.json())
         .then(file => {
@@ -163,11 +164,14 @@ function showParsedPDF(event) {
                 rowArray = arrayItem.split("                    ")
                 let noBlanksRowArray = rowArray.filter(element => element.length > 0)
                 noBlanksRowArray.map(element => {
-                    console.log("element and length", element, element.length)
                         $cell = document.createElement("td")
                         $cell.textContent = element.trim()
+                        if (element === noBlanksRowArray[0]) {
+                            $cell.style.fontWeight = "bold"
+                            $cell.setAttribute("id", element)
+                            $cell.addEventListener('mouseover', stubItemInfo)
+                        }
                         return $cell
-
                 }).map($cell => {
                     $row.append($cell)
                     return $row
@@ -176,5 +180,8 @@ function showParsedPDF(event) {
                 })
             })
         })
+}
 
+function stubItemInfo(event) {
+    console.log(event.target.textContent)
 }
