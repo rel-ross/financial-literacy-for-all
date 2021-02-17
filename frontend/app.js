@@ -108,8 +108,6 @@ document.getElementById("send").addEventListener("click", function() {
           ).innerHTML += `
             ${files[i].name} uploaded <br />
             `;
-            $seeFileButton.style.visibility = "visible"
-            $seeFileButton.textContent ="See File"
 
           var filesRef = storageRef.child('files');
           var uploadedFile = filesRef.child(files[i].name)
@@ -121,7 +119,6 @@ document.getElementById("send").addEventListener("click", function() {
     } else {
     alert("No file chosen");
     }
-    $seeFileButton.addEventListener('click', showParsedPDF)
     });
 
 
@@ -154,8 +151,10 @@ function storeFiletoBackend(URL) {
     }).then(response => response.json())
         .then(file => {
           uploadedFileID = file.id
-          console.log("uploaded file id", uploadedFileID)
+          console.log("uploaded file id", `http://localhost:3000/pages/${uploadedFileID}`)
+          showParsedPDF()
         })
+        
 }
 
 function showParsedPDF(event) {
