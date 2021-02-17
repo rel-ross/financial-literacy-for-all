@@ -136,6 +136,7 @@ function getFileUrl(file) {
       console.log("error encountered");
     });
 }
+
 let uploadedFileID = 0;
 function storeFiletoBackend(URL) {
     console.log("this is the URL", URL)
@@ -199,30 +200,30 @@ function stubItemInfo(event) {
      $modal.style.display = "block"
     if (title.includes("gross")) {
         $modal.innerHTML = `
-           <p> Gross Earnings is the money you would earn without any taxes or deductions. </p>
-           <p> Hourly- your hours worked <b>x</b> hourly rate </p>
-           <p> Salaried (biweekly)- your yearly salary / 26 </p>
-           <p> Salaried (semi-monthly)- your yearly salary / 24 </p>
+           <p> <b>Gross Earnings-</b> the money you would earn without any taxes or deductions. </p>
+           <p> <b>Hourly-</b> hours worked <b>x</b> hourly rate </p>
+           <p> <b>Salaried (biweekly)-</b>  yearly salary ÷  26 </p>
+           <p> <b>Salaried (semi-monthly)-</b> your yearly salary ÷ 24 </p>
         `
     } else if (title.includes("pre-tax")){
         $modal.innerHTML = `
-            These deductions are taken out of your pay before taxes are deducted (so, your gross pay).
-            Why is this good? When your tax percentages are calcualted, they will now be calculated on a lower number
-            since the pre-tax deductions lowered the wages (this new, lowered, wage amount is called your subject wage)
+            <b>Pre-Tax Deductions</b> are taken out of your pay before taxes are deducted.
+            <p><b>Why is this beneficial?</b> When your tax percentages are calcualted, they will now be calculated on a lower number
+            since the pre-tax deductions lowered your wages (this new, lowered, wage amount is called your <b>subject wage</b>)
         `
     } else if (title.includes("post")) {
         $modal.innerHTML = `
-        These deductions are taken out of your pay after taxes have been deducted. They have no tax implications.
+        <b>Post-tax Deductions</b> are taken out of your pay after taxes have been deducted. They have no tax implications.
         `
 
     } else if (title.includes("net")) {
         $modal.innerHTML = `
-        This is your take home money after all deductions have been removed.
+        <b>Net Pay</b> is your take home money after all deductions have been removed.
         `
 
     } else if (title.includes("check")) {
         $modal.innerHTML = `
-        What is the difference between check amount and net pay? If you earn cash tips, 
+        <b>What is the difference between check amount and net pay?</b> If you earn cash tips, 
         you may have already taken that money home at the end of the workday. That is 
         part of yur net pay, but you will not be receiving it in this week's check, as it
         has already been paid out.

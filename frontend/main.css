@@ -137,7 +137,10 @@ button#see-file {
     visibility: hidden;
 }
 td[id]:hover {
-    color: #E8B832;
+    color: #E2708C;
+    border-bottom-style: solid;
+   border-bottom-color: #E2708C;
+   border-width: 4px;
 }
 /* pays tub item hover info modal */
 .modal {
@@ -145,14 +148,16 @@ td[id]:hover {
     position: absolute;
     z-index: 2;
     padding-top: 100px;
-    left: 150px;
-    background: black;
+    left: 175px;
+    background: #E2708C;
+    opacity: 90%;
     width: 20%;
     color: white;
     padding: 20px;
     font-weight: 400;
     font-size: 12px;
   }
+  
 
   .close {
     color: #aaaaaa;
