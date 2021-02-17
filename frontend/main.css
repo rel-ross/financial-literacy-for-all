@@ -113,12 +113,19 @@ button#send {
 }
 
 #document-display {
-    visibility: hidden;
+    /* visibility: hidden; */
+    opacity: 0;
+    transition:opacity 1000ms;
 }
 
-table{
+table {
     border: 1px solid black;
+    padding: 5px;
   }
+
+tr, td {
+    padding: 10px 0px;
+}
 
 button#see-file {
     visibility: hidden;
