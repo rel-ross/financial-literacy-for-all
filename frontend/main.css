@@ -90,6 +90,9 @@ button:hover {
 
 #uploader-header {
     text-align: center;
+    font-size: 1.5em;
+    font-weight:800;
+    margin: 1em;
 }
 
 #uploader-drop-box {
@@ -119,14 +122,46 @@ button#send {
 }
 
 table {
-    border: 1px solid black;
     padding: 5px;
+    box-shadow: 2px 2px 3px black;
+    padding: 30px;
   }
 
 tr, td {
-    padding: 10px 0px;
+    padding: 10px 10px;
 }
 
 button#see-file {
     visibility: hidden;
 }
+td[id]:hover {
+    color: magenta;
+}
+/* pays tub item hover info modal */
+.modal {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    padding-top: 100px;
+    left: 150px;
+    background: black;
+    width: 20%;
+    color: white;
+    padding: 20px;
+    font-weight: 400;
+    font-size: 12px;
+  }
+
+  .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+  }

@@ -6,8 +6,13 @@ const $navBar = document.querySelector("#navbar")
 const $uploaderBox = document.querySelector('#uploader-drop-box')
 const $progress = document.querySelector('#progress')
 const $uploaderContent = document.querySelector('#uploader-content')
+const $uploaderHeader = document.querySelector('#uploader-header')
 const $documentDisplay = document.querySelector('#document-display')
 const $seeFileButton = document.querySelector('#see-file')
+
+
+let $modal = document.createElement("div")
+$modal.setAttribute("class", "modal")
 
 $enterButton.addEventListener("click", removeSplash)
 $search.addEventListener("click", searchBarAppear)
@@ -151,6 +156,7 @@ function storeFiletoBackend(URL) {
 function showParsedPDF(event) {
     let fileContent = "";
     $uploaderBox.remove()
+    $uploaderHeader.textContent = "Hover over pay items to learn about them"
     $documentDisplay.style.opacity="1"
     fetch("http://localhost:3000/pages/1")
         .then(response => response.json())
@@ -183,5 +189,24 @@ function showParsedPDF(event) {
 }
 
 function stubItemInfo(event) {
-    console.log(event.target.textContent)
+    let title = event.target.textContent.toLowerCase()
+    //create a modal that will become visible and whose text will be dictated by hover
+    event.target.prepend($modal)
+     $modal.style.display = "block"
+    if (title.includes("gross")) {
+        $modal.innerHTML = `
+           <p> Gross Earnings is the money you would earn without any taxes or deductions. </p>
+           <p> Hourly- your hours worked <b>x</b> hourly rate </p>
+           <p> Salaried (biweekly)- your yearly salary / 26 </p>
+           <p> Salaried (semi-monthly)- your yearly salary / 24 </p>
+        `
+    } else if (title.includes("pre-tax")){
+        $modal.innerHTML = `
+            These deductions are taken out of your pay before taxes are deducted (so, your gross pay).
+            Why is this good? When your tax percentages are calcualted, they will now be calculated on a lower number
+            since the pre-tax deductions lowered the wages (this new, lowered, wage amount is called your subject wage)
+        `
+    } else {
+        $modal.style.display = "none"
+    }
 }
