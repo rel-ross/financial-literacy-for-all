@@ -5,21 +5,25 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-require 'pry'
-require 'pdf-reader'
-require 'open-uri'
-Page.destroy_all
+
+# require 'pry'
+# require 'pdf-reader'
+# require 'open-uri'
+# Page.destroy_all
 
 
-io = open("https://firebasestorage.googleapis.com/v0/b/mod-3-project-a1e21.appspot.com/o/node-sample-simplified.pdf?alt=media&token=60805945-6bbb-45b9-a7ca-42b4bb28c16a/")
-reader = PDF::Reader.new(io)
-# reader = PDF::Reader.new("./node-sample-simplified.pdf")
+# io = open("https://firebasestorage.googleapis.com/v0/b/mod-3-project-a1e21.appspot.com/o/node-sample-simplified.pdf?alt=media&token=60805945-6bbb-45b9-a7ca-42b4bb28c16a/")
+# reader = PDF::Reader.new(io)
+# # reader = PDF::Reader.new("./node-sample-simplified.pdf")
 
-reader.pages.each do |page|
-    # puts page.fonts
-    pageText = page.text
-    puts pageText
-    payStub = Page.create(content: page.text)
-    # puts page.raw_content
-  end
+# reader.pages.each do |page|
+#     # puts page.fonts
+#     pageText = page.text
+#     puts pageText
+#     payStub = Page.create(content: page.text)
+#     # puts page.raw_content
+#   end
 
+User.destroy_all 
+
+User.create(username:"Arielle", password: "password1")

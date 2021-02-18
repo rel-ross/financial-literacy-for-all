@@ -1,6 +1,6 @@
 console.log("here!")
 const $enterButton = document.querySelector(".enter-button")
-const $companySideBar = document.querySelector(".company-sidebar")
+const $companySideBar = document.querySelector(".company-sidebar-homepage")
 const $search = document.querySelector("#search")
 const $navBar = document.querySelector("#navbar")
 const $uploaderBox = document.querySelector('#uploader-drop-box')
