@@ -9,6 +9,8 @@ const $uploaderContent = document.querySelector('#uploader-content')
 const $uploaderHeader = document.querySelector('#uploader-header')
 const $documentDisplay = document.querySelector('#document-display')
 const $seeFileButton = document.querySelector('#see-file')
+const $logInOrAccount = document.querySelector('#login-or-account')
+loggedInIndicator()
 
 
 let $modal = document.createElement("div")
@@ -232,4 +234,12 @@ function stubItemInfo(event) {
     } else {
         $modal.style.display = "none"
     }
+}
+
+function loggedInIndicator() {
+  if (localStorage.getItem("token")) {
+      $logInOrAccount.innerHTML = `<a href="/account.html">🐥 Account</a>`
+  } else {
+      $logInOrAccount.innerHTML = `<a href="/account.html">🐣 Login</a>`
+  }
 }

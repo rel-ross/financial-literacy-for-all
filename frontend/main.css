@@ -202,7 +202,7 @@ td[id]:hover {
       padding-top: 10%;
   }
   /* login form */
-  form#login-form {
+  form#login-form, form#signup-form {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -211,10 +211,13 @@ td[id]:hover {
     padding: 30px 50px 50px 50px;
     text-align: center;
     border-radius: 15px;
-    width: 250px;
+    width: 270px;
+  }
+  form#signup-form {
+      display: none;
   }
 
-  #login-header {
+  #login-header, #signup-header {
       padding-bottom: 20px;
   }
 
@@ -229,7 +232,7 @@ td[id]:hover {
     font-family: 'Poppins', sans-serif;
    }
 
-   #login-submit {
+   #login-submit, #signup-submit {
        width: 100px;
        border-radius: 20px;
        padding: 10px;
@@ -242,8 +245,21 @@ td[id]:hover {
        
    }
 
-   #login-submit:hover {
+   #login-submit:hover, #signup-submit:hover {
        background-color: #E8B832; 
        cursor: pointer;
        box-shadow: none;
    }
+
+   #sign-up {
+       margin-top: 30px;
+   }
+
+   #sign-up-link {
+       color: #E2708C;
+   }
+
+   #sign-up-link:hover {
+    color: #4B3E6A;
+    cursor: pointer;
+}
