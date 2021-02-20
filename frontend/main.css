@@ -125,7 +125,22 @@ button:hover {
     align-items: center;
 }
 
-#progress {
+progress {
+    margin-top: 20px;
+    background: #E8B832;
+    border-radius: 20px;
+}
+
+progress::-webkit-progress-value {
+    background: #E8B832;
+    border-radius: 20px;
+}
+
+progress::-webkit-progress-bar {
+    border-radius: 20px;
+}
+
+.hidden {
     visibility: hidden;
 }
 

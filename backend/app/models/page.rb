@@ -6,11 +6,9 @@ class Page < ApplicationRecord
         io     = open(self.url)
         reader = PDF::Reader.new(io)
         reader.pages.each do |page|
-            # puts page.fonts
             pageText = page.text
             puts pageText
             self.content = page.text
-            # puts page.raw_content
         end
         self.content
     end
