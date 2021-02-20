@@ -4,10 +4,10 @@ class AuthenticationController < ApplicationController
         @user = User.find_by({ username: params[:username] })
 
         if !@user
-            render json: { error: "No user by that name" }, status: :unauthorized
+            render json: { error: "User/Password does not match our records" }, status: :unauthorized
         else
             if !@user.authenticate params[:password]
-                render json: { error: "User/password does not match" }, status: :unauthorized
+                render json: { error: "User/Password does not match our records" }, status: :unauthorized
             else
                 payload= {
                     iat: Time.now.to_i,

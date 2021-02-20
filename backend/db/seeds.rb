@@ -23,7 +23,3 @@
 #     payStub = Page.create(content: page.text)
 #     # puts page.raw_content
 #   end
-
-User.destroy_all 
-
-User.create(username:"Arielle", password: "password1")

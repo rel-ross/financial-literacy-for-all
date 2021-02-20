@@ -57,12 +57,10 @@ function userLogin(event) {
 }
 
 function loggedInIndicator() {
-    if (localStorage.getItem("token")) {
-        $logInOrAccount.innerHTML = `<a href="/account.html">🐥 Account</a>`
-    } else {
-        $logInOrAccount.innerHTML = `<a href="/account.html">🐣 Login</a>`
-    }
-}
+    localStorage.getItem("token")  
+    ?$logInOrAccount.innerHTML = `<a href="/account.html">🐥 Account</a>`
+    :$logInOrAccount.innerHTML = `<a href="/account.html">🐣 Login</a>`
+  }
 
 function AccountPage() {
     if (localStorage.getItem("token")) {
@@ -71,3 +69,4 @@ function AccountPage() {
         $accountPageInfo.textContent = `This is where your account info will go`
     }
 }
+
