@@ -16,7 +16,7 @@ Setting you on the path to financial literacy, starting with paystubs
 The Paystub Reader app helps individuals understand the contents of their recent paystubs. A user can upload a stub, and the app will parse the stub and provide info on different line items through tooltip modals.
 
 # Video
-Coming soon
+https://www.youtube.com/watch?v=65e9RnK2J1s&feature=youtu.be
 
 
 # Technologies
